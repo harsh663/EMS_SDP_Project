@@ -53,12 +53,7 @@ export default function CommentsList({ comments }) {
 
                       {isLoginuser === comment?.user?._id ? (
                         <p class="flex">
-                          <Link
-                            to={`/update-comment/${comment?._id}`}
-                            class="p-3"
-                          >
-                            <PencilAltIcon class="h-5 mt-3 text-yellow-300" />
-                          </Link>
+                         
                           <button
                             onClick={() =>
                               dispatch(deleteCommentAction(comment?._id))

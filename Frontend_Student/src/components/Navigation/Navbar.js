@@ -26,7 +26,7 @@ const Navbar = () => {
         <PublicNavbar />
       )}
       {/* Display alert */}
-      {userAuth && !userAuth.isVerified && <AccountVerificationAlertWarning />}
+      {userAuth && !userAuth.isAccountVerified && <AccountVerificationAlertWarning />}
       {/* display success msg */}
       {loading && <h2 className="text-center">Loading please wait...</h2>}
       {token && <AccountVerificationSuccessAlert />}

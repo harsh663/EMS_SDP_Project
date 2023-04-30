@@ -1,8 +1,8 @@
 const express = require("express");
 const authMiddleware = require("../../middlewares/auth/authMiddleware");
+const { sendEmailMsgCtrl } = require("../../controllers/emailMsg/emailMsgCtrl");
 const emailMsgRoute = express.Router();
-const sendMail = require("../../utils/sendMail");
 
-emailMsgRoute.post("/", authMiddleware, sendMail);
+emailMsgRoute.post("/", authMiddleware, sendEmailMsgCtrl);
 
 module.exports = emailMsgRoute;

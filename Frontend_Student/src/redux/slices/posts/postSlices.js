@@ -142,11 +142,10 @@ export const fetchPostDetailsAction = createAsyncThunk(
 );
 
 
-
-//Add DisLikes to post
+//register to post
 export const RegisterationStudent = createAsyncThunk(
   "posts/register",
-  async (postId, { rejectWithValue, getState, dispatch }) => {
+  async (userToRegister, { rejectWithValue, getState, dispatch }) => {
     //get user token
     const user = getState()?.users;
     const { userAuth } = user;
@@ -157,8 +156,8 @@ export const RegisterationStudent = createAsyncThunk(
     };
     try {
       const { data } = await axios.put(
-        `http://localhost:5000/api/posts/register`,
-        { postId },
+        `${baseUrl}/api/posts/register`,
+        { postId:userToRegister },
         config
       );
 
@@ -268,13 +267,15 @@ const postSlice = createSlice({
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
     });
-    // Likes
+    // Student Register
     builder.addCase(RegisterationStudent.pending, (state, action) => {
       state.loading = true;
+
     });
+
     builder.addCase(RegisterationStudent.fulfilled, (state, action) => {
-      state.likes = action?.payload;
       state.loading = false;
+      state.register = action?.payload;
       state.appErr = undefined;
       state.serverErr = undefined;
     });

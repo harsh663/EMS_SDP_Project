@@ -107,7 +107,7 @@ export default function PostsList() {
                       className="flex flex-wrap bg-gray-900 -mx-3  lg:mb-6"
                     >
                       <div className="mb-10  w-full lg:w-1/4 ">
-                        <Link     to={`/posts/${post?._id}`}>
+                        <Link to={`/posts/${post?._id}`}>
                           {/* Post image */}
                           <img
                             className="w-full h-full object-cover rounded"
@@ -134,14 +134,14 @@ export default function PostsList() {
                           <h3 className="mb-1 text-2xl text-green-400 font-bold font-heading">
                             {/* {capitalizeWord(post?.title)} */}
                             <Link
-                          to={`/posts/${post?._id}`}
-                          className="text-green-400  hover:underline"
+                              to={`/posts/${post?._id}`}
+                              className="text-green-400  hover:underline"
 
-                        >
-                            {post?.title}
+                            >
+                              {post?.title}
                             </Link>
                           </h3>
-                          
+
                         </Link>
 
                         <p className="text-gray-300 ">{post?.description?.substring(0, 400)}</p>

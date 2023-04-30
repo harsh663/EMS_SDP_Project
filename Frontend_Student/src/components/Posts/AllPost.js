@@ -14,16 +14,6 @@ const AllPost = () => {
     const post = useSelector(state => state?.post);
     const { postLists, loading, appErr, serverErr } = post;
 
-    //select categories from store
-    const category = useSelector(state => state?.category);
-    const {
-        categoryList,
-        loading: catLoading,
-        appErr: catAppErr,
-        serverErr: catServerErr,
-    } = category;
-
-
     //dispatch
     const dispatch = useDispatch();
     //fetch post
@@ -97,7 +87,12 @@ const AllPost = () => {
                                                         </div>
                                                         <div className="ml-4">
                                                             <div className="text-sm font-medium text-gray-900">
-                                                                {post?.title}
+                                                                <Link
+                                                                    to={`/posts/${post?._id}`}
+                                                                    className=" hover:underline "
+                                                                >
+                                                                    {post?.title}
+                                                                </Link>
                                                             </div>
 
                                                         </div>
@@ -115,10 +110,13 @@ const AllPost = () => {
                                                         </div>
                                                         <div className="ml-4">
                                                             <div className="text-sm font-medium text-gray-900">
-
-                                                                {post?.user?.firstName}{" "}
-                                                                {post?.user?.lastName}
-
+                                                                <Link
+                                                                    to={`/profile/${post?.user?._id}`}
+                                                                    className="text-gray-900 hover:underline "
+                                                                >
+                                                                    {post?.user?.firstName}{" "}
+                                                                    {post?.user?.lastName}
+                                                                </Link>
                                                             </div>
                                                             <div className="text-sm text-gray-500">
                                                                 {post?.user?.email}

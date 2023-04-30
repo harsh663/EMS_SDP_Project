@@ -32,12 +32,17 @@ const PostDetails = ({
 
   //Get login user
   const user = useSelector(state => state.users);
-  const { userAuth } = user;
+  const { userAuth, } = user;
+  console.log(userAuth._id)
+  useEffect(() => {
+    dispatch(RegisterationStudent(id));
+  }, [userAuth?.id, dispatch]);
 
   const isCreatedBy = postDetails?.user?._id === userAuth?._id;
   console.log(isCreatedBy);
   //redirect
   if (isDeleted) return <Redirect to="/posts" />;
+  console.log(postDetails)
   return (
     <>
       {loading ? (
@@ -115,22 +120,21 @@ const PostDetails = ({
           <div className="flex mx-52    mt-16 items-center">
 
             <button
-
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded " onClick={() =>
-                dispatch(RegisterationStudent(post?._id))
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded "
+              onClick={() =>
+                dispatch(RegisterationStudent(id))
               } >
               Regisrer Here
-
             </button>
-
 
           </div>
           <div className="px-12 mt-12" />
           {/* Add comment Form component here */}
           {userAuth ? <AddComment postId={id} /> : null}
           <div className="flex justify-center  items-center ">
-            <CommentsList comments={post?.comments} postId={post?._id} />
+            {/* <CommentsList comments={post?.comments} postId={post?._id} /> */}
             <CommentsList comments={postDetails?.comments} />
+
           </div>
         </section>
       )}
