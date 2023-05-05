@@ -16,6 +16,7 @@ const Navbar = () => {
   //account verification
   const account = useSelector(state => state?.accountVerification);
   const { loading, appErr, serverErr, token } = account;
+  console.log("useAuth", userAuth, profile)
   return (
     <>
       {isAdmin ? (
@@ -26,7 +27,8 @@ const Navbar = () => {
         <PublicNavbar />
       )}
       {/* Display alert */}
-      {userAuth && !userAuth.isAccountVerified && <AccountVerificationAlertWarning />}
+
+      {userAuth && profile && profile.isAccountVerified && <AccountVerificationAlertWarning />}
       {/* display success msg */}
       {loading && <h2 className="text-center">Loading please wait...</h2>}
       {token && <AccountVerificationSuccessAlert />}

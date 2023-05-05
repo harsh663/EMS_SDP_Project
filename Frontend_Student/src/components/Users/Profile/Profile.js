@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import {
   HeartIcon,
@@ -14,15 +14,36 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import DateFormatter from "../../../utils/DateFormatter";
 import LoadingComponent from "../../../utils/LoadingComponent";
+import { fetchPostsAction } from "../../../redux/slices/posts/postSlices";
 
 export default function Profile(props) {
   const dispatch = useDispatch();
   const id = props.computedMatch.params.id;
   //History
   const history = useHistory();
+  const [registeredEvents, setRegisteredEvents] = useState([])
 
   //User data from store
   const users = useSelector(state => state.users);
+  const fetchRegisteredEvents = async () => {
+
+    const allPosts = await dispatch(fetchPostsAction(""));
+    let registeredPosts = [];
+    console.log("ap ", allPosts.payload)
+
+    allPosts.payload.forEach((post) => {
+      let isRegistered = false;
+      post.Register.forEach((user) => {
+        if (user._id === userAuth._id) {
+          isRegistered = true;
+        }
+      })
+      if (isRegistered) {
+        registeredPosts.push(post);
+      }
+    })
+    setRegisteredEvents(registeredPosts)
+  }
   const {
     profile,
     profileLoading,
@@ -36,7 +57,10 @@ export default function Profile(props) {
   //fetch user profile
   useEffect(() => {
     dispatch(userProfileAction(id));
-  }, [id, dispatch, followed, unFollowed]);
+    fetchRegisteredEvents();
+
+
+  }, [id, dispatch]);
 
   //send mail handle click
   const sendMailNavigate = () => {
@@ -141,7 +165,7 @@ export default function Profile(props) {
 
                             <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
 
-          
+
                               {/* Update Profile */}
 
                               <>
@@ -196,7 +220,7 @@ export default function Profile(props) {
                         <h1 className="text-center text-xl border-gray-500 mb-2 border-b-2">
                           Registered Event
                         </h1>
-                        {/* Loop here */}
+                        {/* Loop here
                         {profile?.posts?.length <= 0 ? (
                           <h2 className="text-center text-xl">No Post Found</h2>
                         ) : (
@@ -233,7 +257,11 @@ export default function Profile(props) {
                               </div>
                             </div>
                           ))
-                        )}
+                        )} */}
+
+                        {registeredEvents.map((event) => {
+                          return <p>{event.title}</p>
+                        })}
                       </div>
                     </div>
                   </article>
