@@ -2,10 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { MailIcon } from "@heroicons/react/solid";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  blockUserAction,
-  unBlockUserAction,
-} from "../../../redux/slices/users/usersSlices";
+
 
 const UsersListItem = user => {
   //dispatch

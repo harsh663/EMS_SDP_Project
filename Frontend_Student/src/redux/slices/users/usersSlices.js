@@ -430,7 +430,7 @@ const usersSlices = createSlice({
       state.serverErr = action?.error?.message;
     });
 
-   
+
     //All Users
     builder.addCase(fetchUsersAction.pending, (state, action) => {
       state.loading = true;
@@ -548,7 +548,7 @@ const usersSlices = createSlice({
       state.serverErr = action?.error?.message;
       state.loading = false;
     });
-    
+
     //logout
     builder.addCase(logoutAction.pending, (state, action) => {
       state.loading = false;

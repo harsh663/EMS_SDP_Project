@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import AdminNavbar from "./Admin/AdminNavbar";
 import AccountVerificationAlertWarning from "./Alerts/AccountVerificationAlertWarning";
 import AccountVerificationSuccessAlert from "./Alerts/AccountVerificationSuccessAlert";
-
 import PrivateNavbar from "./Private/PrivateNavbar";
 import PublicNavbar from "./Public/PublicNavbar";
 
@@ -28,7 +27,7 @@ const Navbar = () => {
       )}
       {/* Display alert */}
 
-      {userAuth && profile && profile.isAccountVerified && <AccountVerificationAlertWarning />}
+      {userAuth && !profile?.isAccountVerified && <AccountVerificationAlertWarning />}
       {/* display success msg */}
       {loading && <h2 className="text-center">Loading please wait...</h2>}
       {token && <AccountVerificationSuccessAlert />}

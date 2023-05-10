@@ -1,16 +1,15 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Blog app",
+  "description": "EMS",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
     "server": "node server.js"
   },
-  "author": "iNovotek",
-  "license": "ISC",
+  "author": "Harsh",
+  "license": "",
   "dependencies": {
-    "@sendgrid/mail": "^7.7.0",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.26.2",
     "cors": "^2.8.5",

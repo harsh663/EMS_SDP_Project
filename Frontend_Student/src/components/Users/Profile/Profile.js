@@ -260,7 +260,38 @@ export default function Profile(props) {
                         )} */}
 
                         {registeredEvents.map((event) => {
-                          return <p>{event.title}</p>
+                          return <div className="flex flex-wrap  -mx-3 mt-3  lg:mb-6">
+                            <div className="mb-2   w-full lg:w-1/4 px-3">
+                              <Link to={`/posts/${event?._id}`}>
+                                <img
+                                  className="object-cover h-40 rounded"
+                                  src={event?.image}
+                                  alt="poster"
+                                />
+                              </Link>
+                            </div>
+                            <div className="w-full lg:w-3/4 px-3">
+                              <Link
+                                to={`/posts/${event?._id}`}
+                                className="hover:underline"
+                              >
+                                <h3 className="mb-1 text-2xl text-green-600 font-bold font-heading">
+                                  {event?.title}
+                                </h3>
+                              </Link>
+                              <p className="text-gray-600 truncate">
+                                {event?.description}
+                              </p>
+
+                              <Link
+                                className="text-indigo-500 hover:underline"
+                                to={`/posts/${event?._id}`}
+                              >
+                                Read more
+                              </Link>
+                            </div>
+                          </div>
+
                         })}
                       </div>
                     </div>
